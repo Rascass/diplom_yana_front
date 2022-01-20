@@ -29,6 +29,9 @@ function Idles() {
 			setValid(res);
 		});
 		Requests.idle.getAll().then((idles) => {
+			if (idles.statusCode === 400) {
+				return setData([]);
+			}
 			setData([...idles]);
 		});
 	}, []);

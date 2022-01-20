@@ -29,6 +29,9 @@ function News() {
 			setValid(res);
 		});
 		Requests.news.getAll().then((news) => {
+			if(news.statusCode === 400){
+				return setData([]);
+			}
 			setData([...news]);
 		});
 	}, []);

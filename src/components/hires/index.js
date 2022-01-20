@@ -29,6 +29,9 @@ function Hires() {
 			setValid(res);
 		});
 		Requests.hire.getAll().then((hires) => {
+			if (hires.statusCode === 400) {
+				return setData([]);
+			}
 			setData([...hires]);
 		});
 	}, []);

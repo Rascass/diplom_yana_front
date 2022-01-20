@@ -29,6 +29,9 @@ function Selles() {
 			setValid(res);
 		});
 		Requests.sell.getAll().then((selles) => {
+			if (selles.statusCode === 400) {
+				return setData([]);
+			}
 			setData([...selles]);
 		});
 	}, []);
