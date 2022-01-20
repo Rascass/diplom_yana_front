@@ -16,6 +16,9 @@ import {
 	hire,
 	hireChange,
 	hireCreateComponent,
+	idleCreateComponent,
+	idleChangeComponent,
+	idleComponent,
 } from "../pages";
 
 export function Routes() {
@@ -34,6 +37,9 @@ export function Routes() {
 				<Route path='/hire/:id/change' component={hireChange} />
 				<Route path='/hire/:id' component={hire} />
 				<Route path='/hire' component={hireRoute} />
+				<Route path='/idle/create' component={idleCreateComponent} />
+				<Route path='/idle/:id/change' component={idleChangeComponent} />
+				<Route path='/idle/:id' component={idleComponent} />
 				<Route path='/idle' component={idleRoute} />
 				<Route path='/sell' component={sellRoute} />
 				<Route path='/admin' component={authRoute} />
