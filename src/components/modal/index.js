@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import MuiPhoneNumber from "material-ui-phone-number";
+import Requests from "../../services/crud";
 
 const style = {
 	position: "absolute",
@@ -23,22 +24,34 @@ export default function BasicModal(props) {
 	const [fullname, setFullname] = React.useState("");
 
 	const sumbitClick = (e) => {
-		alert("Ожидайте вам скоро перезвонят");
+		Requests.orders
+			.create({
+				full_name: fullname,
+				number: phone,
+				link: e.target.formAction,
+				feedback: false,
+			})
+			.then(() => {
+				alert("Ожидайте вам скоро перезвонят");
+			});
 		setOpen(false);
 	};
+
 	const handlePhone = (e) => {
 		setPhone(e);
 	};
+
 	const handleFullname = (e) => {
 		setFullname(e.target.value);
 	};
+
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 
 	return (
 		<div>
 			<Button variant='contained' onClick={handleOpen}>
-        {props.name || "Записаться"}
+				{props.name || "Записаться"}
 			</Button>
 			<Modal
 				open={open}

@@ -22,6 +22,7 @@ import {
 	sellCreateComponent,
 	sellChangeComponent,
 	sellComponent,
+	allOrdersComponent,
 } from "../pages";
 
 export function Routes() {
@@ -48,6 +49,7 @@ export function Routes() {
 				<Route path='/sell/:id/change' component={sellChangeComponent} />
 				<Route path='/sell/:id' component={sellComponent} />
 				<Route path='/sell' component={sellRoute} />
+				<Route path='/admin/all' component={allOrdersComponent} />
 				<Route path='/admin' component={authRoute} />
 			</Switch>
 		</Router>

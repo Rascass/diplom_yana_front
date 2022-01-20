@@ -47,6 +47,12 @@ const requests = () => ({
 		update: createPutRequest(BACKEND_HOST + "selles"),
 		delete: createDeleteRequest(BACKEND_HOST + "selles"),
 	},
+	orders: {
+		update: createPutRequest(BACKEND_HOST + "orders"),
+		getAll: createGetAllRequest(BACKEND_HOST + "orders"),
+		create: createPostRequest(BACKEND_HOST + "orders/create"),
+		getAllFeedback: createGetAllRequest(BACKEND_HOST + "orders/feedback"),
+	},
 });
 
 export default requests();

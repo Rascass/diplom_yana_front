@@ -20,6 +20,7 @@ import Idle from "../components/idles/idle/index"
 import SellCreate from "../components/selles/create";
 import SellChange from "../components/selles/sell/change";
 import Sell from "../components/selles/sell/index";
+import GetAllOrders from "../components/auth/orders/allOrders"
 
 export const contactsRoute = () => <Contacts />;
 export const hireRoute = () => <Hire />;
@@ -42,3 +43,4 @@ export const idleComponent = () => <Idle />;
 export const sellCreateComponent = () => <SellCreate />;
 export const sellChangeComponent = () => <SellChange />;
 export const sellComponent = () => <Sell />;
+export const allOrdersComponent = () => <GetAllOrders />;
