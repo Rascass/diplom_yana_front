@@ -40,6 +40,13 @@ const requests = () => ({
 		update: createPutRequest(BACKEND_HOST + "idles"),
 		delete: createDeleteRequest(BACKEND_HOST + "idles"),
 	},
+	sell: {
+		create: createPostRequest(BACKEND_HOST + "selles/create"),
+		getAll: createGetAllRequest(BACKEND_HOST + "selles"),
+		get: createGetRequest(BACKEND_HOST + "selles"),
+		update: createPutRequest(BACKEND_HOST + "selles"),
+		delete: createDeleteRequest(BACKEND_HOST + "selles"),
+	},
 });
 
 export default requests();

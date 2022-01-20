@@ -19,6 +19,9 @@ import {
 	idleCreateComponent,
 	idleChangeComponent,
 	idleComponent,
+	sellCreateComponent,
+	sellChangeComponent,
+	sellComponent,
 } from "../pages";
 
 export function Routes() {
@@ -41,6 +44,9 @@ export function Routes() {
 				<Route path='/idle/:id/change' component={idleChangeComponent} />
 				<Route path='/idle/:id' component={idleComponent} />
 				<Route path='/idle' component={idleRoute} />
+				<Route path='/sell/create' component={sellCreateComponent} />
+				<Route path='/sell/:id/change' component={sellChangeComponent} />
+				<Route path='/sell/:id' component={sellComponent} />
 				<Route path='/sell' component={sellRoute} />
 				<Route path='/admin' component={authRoute} />
 			</Switch>

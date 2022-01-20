@@ -5,7 +5,7 @@ import Hire from "../components/hires";
 import Idles from "../components/idles";
 import News from "../components/news";
 import Price from "../components/price";
-import Sell from "../components/sell";
+import Selles from "../components/selles";
 import NewsId from "../components/news/news/index.js";
 import ChangeNews from "../components/news/news/change";
 import PriceChange from "../components/price/change/index";
@@ -17,13 +17,16 @@ import HireCreate from "../components/hires/create/index";
 import IdleCreate from "../components/idles/create"
 import IdleChange from "../components/idles/idle/change"
 import Idle from "../components/idles/idle/index"
+import SellCreate from "../components/selles/create";
+import SellChange from "../components/selles/sell/change";
+import Sell from "../components/selles/sell/index";
 
 export const contactsRoute = () => <Contacts />;
 export const hireRoute = () => <Hire />;
 export const idleRoute = () => <Idles />;
 export const newsRoute = () => <News />;
 export const priceRoute = () => <Price />;
-export const sellRoute = () => <Sell />;
+export const sellRoute = () => <Selles />;
 export const authRoute = () => <Auth />;
 export const newsIdRoute = () => <NewsId />;
 export const changeNewsRoute = () => <ChangeNews />;
@@ -36,3 +39,6 @@ export const hireCreateComponent = () => <HireCreate />;
 export const idleCreateComponent = () => <IdleCreate />;
 export const idleChangeComponent = () => <IdleChange />;
 export const idleComponent = () => <Idle />;
+export const sellCreateComponent = () => <SellCreate />;
+export const sellChangeComponent = () => <SellChange />;
+export const sellComponent = () => <Sell />;
