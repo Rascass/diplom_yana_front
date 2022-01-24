@@ -1,26 +1,42 @@
+import {
+	Button,
+} from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+import SearchBar from "material-ui-search-bar";
 import React, { useEffect, useState } from "react";
-import Requests from "../../services/crud/index";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import ButtonBase from "@mui/material/ButtonBase";
-import Button from "@mui/material/Button";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { validate } from "../../services/auth";
-import { useHistory } from "react-router-dom";
+import Requests from "../../services/crud/index";
 
-const Img = styled("img")({
-	margin: "auto",
-	display: "block",
-	maxWidth: "100%",
-	maxHeight: "100%",
-});
+const columns = [
+	{ field: "title", headerName: "Заголовок", width: 150 },
+	{ field: "content", headerName: "Описание", width: 150 },
+	{ field: "sex", headerName: "Пол", width: 150 },
+	{ field: "age", headerName: "Возраст", width: 150 },
+	{ field: "price", headerName: "Цена", width: 150 },
+];
 
-function Selles() {
-	const [data, setData] = useState([]);
+
+export default function BasicTable() {
+	const [originalRows, setOriginal] = useState([]);
+	const [rows, setRows] = useState([]);
+	const [searched, setSearched] = useState("");
 	const [valid, setValid] = useState(false);
 
 	let history = useHistory();
+
+	const requestSearch = (searchedVal) => {
+		const filteredRows = originalRows.filter((row) => {
+			return (
+				row.title.toLowerCase().includes(searchedVal.toLowerCase()) ||
+				row.content.toLowerCase().includes(searchedVal.toLowerCase()) ||
+				row.age.toString().toLowerCase().includes(searchedVal.toLowerCase()) ||
+				row.sex.toLowerCase().includes(searchedVal.toLowerCase()) ||
+				row.price.toString().toLowerCase().includes(searchedVal.toLowerCase()) 
+			);
+		});
+		setRows(filteredRows);
+	};
 
 	useEffect(() => {
 		validate({
@@ -30,82 +46,57 @@ function Selles() {
 		});
 		Requests.sell.getAll().then((selles) => {
 			if (selles.statusCode === 400) {
-				return setData([]);
+				return setRows([]);
 			}
-			setData([...selles]);
+			setRows([...selles]);
+			setOriginal([...selles]);
 		});
 	}, []);
-
-	const deleteSell = (id) => {
-		Requests.sell.delete(id).then(() => {
-			Requests.sell.getAll().then((selles) => {
-				setData([...selles]);
-			});
-		});
-	};
 
 	const createSell = () => {
 		history.push(`/sell/create`);
 	};
 
+	const cancelSearch = () => {
+		setSearched("");
+		requestSearch(searched);
+	};
+
 	return (
-		<Paper sx={{ p: 2, margin: "auto", maxWidth: 800, flexGrow: 1 }}>
-			<Grid container spacing={2} direction='column'>
-				{valid === true ? (
-					<Button variant='contained' onClick={createSell}>
-						Создать
-					</Button>
-				) : null}
-				{data.map((el) => {
-					return (
-						<div key={el.id}>
-							<Grid item>
-								<ButtonBase sx={{ width: 192, height: 192 }}>
-									<Img
-										alt='complex'
-										src={`http://localhost:5001/file?location=http%3A%2F%2Flocalhost%3A3000%2Fsell%2F${el.id}`}
-									/>
-								</ButtonBase>
-							</Grid>
-							<Grid item xs={12} sm container>
-								<Grid item xs container direction='column' spacing={2}>
-									<Grid item xs>
-										<Typography
-											gutterBottom
-											variant='subtitle1'
-											component='div'>
-											{el.title}
-										</Typography>
-										<Typography variant='body2' gutterBottom>
-											{el.content.slice(0, 300) + "..."}
-										</Typography>
-									</Grid>
-									<Grid item>
-										<Typography sx={{ cursor: "pointer" }} variant='body2'>
-											<Button
-												variant='contained'
-												href={`${window.location.href}/${el.id}`}>
-												Читать
-											</Button>
-											{valid === true ? (
-												<Button
-													variant='contained'
-													onClick={() => {
-														deleteSell(el.id);
-													}}>
-													Удалить
-												</Button>
-											) : null}
-										</Typography>
-									</Grid>
-								</Grid>
-							</Grid>
-						</div>
-					);
-				})}
-			</Grid>
-		</Paper>
+		<>
+			{valid === true ? (
+				<Button variant='contained' onClick={createSell}>
+					Создать
+				</Button>
+			) : null}
+			<SearchBar
+				style={{
+					marginRight: "auto",
+					marginLeft: "auto",
+					width: "60%",
+				}}
+				value={searched}
+				onChange={(searchVal) => requestSearch(searchVal)}
+				onCancelSearch={() => cancelSearch()}
+			/>
+			<div
+				style={{
+					height: 600,
+					width: "60%",
+					display: "block",
+					marginRight: "auto",
+					marginLeft: "auto",
+				}}>
+				<DataGrid
+					rows={rows}
+					columns={columns}
+					pageSize={5}
+					rowsPerPageOptions={[5]}
+					onRowClick={(e) => {
+						history.push("sell/" + e.row.id);
+					}}
+				/>
+			</div>
+		</>
 	);
 }
-
-export default Selles;

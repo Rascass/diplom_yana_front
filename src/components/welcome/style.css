@@ -1,0 +1,43 @@
+.background {
+	white-space: pre-line;
+	position: relative;
+	overflow: scroll;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.about-us {
+  width: 600px;
+	background: rgba(45, 45, 45, 0.95) none repeat scroll 0% 0% !important;
+  display: grid;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+.about {
+  height: auto;
+  width: 600px;
+	display: grid;
+	justify-content: center;
+	color: rgb(92, 88, 84);
+}
+
+.about-text {
+  height: auto;
+  width: 600px;
+  white-space: pre-line;
+	color: rgb(92, 88, 84);
+  margin-bottom: 25px;
+}
+
+.clients{
+  display: grid;
+  justify-content: center;
+  color: rgb(92, 88, 84);
+}
+
+.price{
+  display: grid;
+  justify-content: center;
+  color: rgb(92, 88, 84);
+}

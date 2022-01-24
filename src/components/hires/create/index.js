@@ -61,6 +61,7 @@ export default function CreateHire() {
 						types={fileTypes}
 					/>
 					<TextareaAutosize
+						placeholder='Title'
 						maxRows={Infinity}
 						aria-label='maximum height'
 						defaultValue={data.title}
@@ -68,6 +69,7 @@ export default function CreateHire() {
 						onChange={onTitleChange}
 					/>
 					<TextareaAutosize
+						placeholder='Content'
 						className='content'
 						maxRows={Infinity}
 						aria-label='maximum height'

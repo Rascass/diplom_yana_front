@@ -1,27 +1,32 @@
 import { Button, Grid, Paper, TextareaAutosize } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import Requests from "../../../services/crud";
+import {
+	useHistory,
+	useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
+import Requests from "../../../../services/crud";
 
-export default function ChangePrice() {
-	const [data, setData] = useState([{}]);
+export default function ChangeHoursesTypes() {
+	const [data, setData] = useState({});
+	const [name, setName] = useState("");
 
 	let history = useHistory();
+	let { id } = useParams();
 
 	const applyChanges = () => {
-		Requests.price.update(data[0].id, data).then(() => {
-			history.push(`/price`);
+		Requests.hoursesTypes.update(id, { name }).then(() => {
+			history.push(`/admin/hourses-types`);
 		});
 	};
 
 	const onContentChange = (e) => {
-		setData({ ...data, content: e.target.value });
+		setName(e.target.value);
 	};
 
 	useEffect(() => {
-		Requests.price.getAll().then((price) => {
-      price = price.filter(el => el.id === 1);
-			setData([...price]);
+		Requests.hoursesTypes.get(id).then((type) => {
+			setData({ ...type });
+			setName(type.name);
 		});
 	}, []);
 
@@ -43,7 +48,7 @@ export default function ChangePrice() {
 						placeholder='Content'
 						maxRows={Infinity}
 						aria-label='maximum height'
-						defaultValue={data[0].content}
+						defaultValue={name}
 						onChange={onContentChange}
 						style={{ width: 750 }}
 					/>

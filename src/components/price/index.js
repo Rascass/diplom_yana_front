@@ -37,6 +37,13 @@ function Price() {
 						</Grid>
 					</Grid>
 				</Grid>
+				<Button
+					variant='contained'
+					href='http://localhost:5001/prices'
+					download
+					target='_blank'>
+					Скачать прайс лист
+				</Button>
 			</Paper>
 		</>
 	);

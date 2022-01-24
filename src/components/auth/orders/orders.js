@@ -42,6 +42,8 @@ export default function Orders() {
 				<Paper sx={{ p: 2, margin: "auto", maxWidth: 800, flexGrow: 1 }}>
 					<Grid container spacing={2} direction='column'>
 						<Button href={window.location.href + "/all"}>Все заказы</Button>
+						<Button href={window.location.href + "/feedback"}>Отзывы</Button>
+						<Button href={window.location.href + "/hourses-types"}>специализации</Button>
 						{data.map((el) => {
 							return (
 								<div key={el.id}>
@@ -60,9 +62,7 @@ export default function Orders() {
 											</Grid>
 											<Grid item>
 												<Typography sx={{ cursor: "pointer" }} variant='body2'>
-													<Button
-														variant='contained'
-														href={el.link}>
+													<Button variant='contained' href={el.link}>
 														Читать
 													</Button>
 													{el.feedback === false ? (

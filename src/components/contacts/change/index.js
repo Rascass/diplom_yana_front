@@ -42,6 +42,7 @@ export default function ChangeContacts() {
 					<TextareaAutosize
 						maxRows={Infinity}
 						aria-label='maximum height'
+						placeholder='Content'
 						defaultValue={data[0].content}
 						onChange={onContentChange}
 						style={{ width: 750 }}

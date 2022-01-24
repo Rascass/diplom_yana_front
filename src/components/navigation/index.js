@@ -1,10 +1,23 @@
-import React from "react";
-import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
 import { URLS, DropdownURLS } from "../../services/crud/constants/index";
 
 const DOMAIN = "http://localhost:3000/";
 
 export default function Navigation() {
+	const [logout, setStatus] = useState(false);
+
+	useEffect(() => {
+		if (localStorage.getItem("user")) {
+			setStatus(true);
+		}
+	}, []);
+
+	const onHandle = () => {
+		localStorage.removeItem("user");
+		setStatus(false)
+	};
+
 	return (
 		<Navbar bg='light' variant='light'>
 			<Container>
@@ -22,6 +35,11 @@ export default function Navigation() {
 							</NavDropdown.Item>
 						))}
 					</NavDropdown>
+					{logout ? (
+						<Button onClick={onHandle} variant='primary'>
+							Выйти
+						</Button>
+					) : null}
 				</Nav>
 			</Container>
 		</Navbar>

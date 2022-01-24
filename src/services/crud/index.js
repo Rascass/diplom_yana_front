@@ -53,6 +53,17 @@ const requests = () => ({
 		create: createPostRequest(BACKEND_HOST + "orders/create"),
 		getAllFeedback: createGetAllRequest(BACKEND_HOST + "orders/feedback"),
 	},
+	feedback: {
+		getAll: createGetAllRequest(BACKEND_HOST + "feedback"),
+		create: createPostRequest(BACKEND_HOST + "feedback/create"),
+	},
+	hoursesTypes: {
+		create: createPostRequest(BACKEND_HOST + "hourse-types/create"),
+		getAll: createGetAllRequest(BACKEND_HOST + "hourse-types"),
+		update: createPutRequest(BACKEND_HOST + "hourse-types"),
+		delete: createDeleteRequest(BACKEND_HOST + "hourse-types"),
+		get: createGetRequest(BACKEND_HOST + "hourse-types"),
+	},
 });
 
 export default requests();

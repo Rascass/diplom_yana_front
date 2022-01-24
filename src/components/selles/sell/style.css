@@ -1,3 +1,7 @@
 .content {
 	white-space: pre-line;
 }
+
+.video {
+	display: inline-block;
+}

@@ -21,6 +21,11 @@ import SellCreate from "../components/selles/create";
 import SellChange from "../components/selles/sell/change";
 import Sell from "../components/selles/sell/index";
 import GetAllOrders from "../components/auth/orders/allOrders"
+import Feedback from "../components/auth/feedback"
+import HoursesTypes from "../components/auth/hourses-types";
+import ChangeHoursesTypes from '../components/auth/hourses-types/change';
+import CreateHoursesTypes from '../components/auth/hourses-types/create';
+import Welcome from '../components/welcome'
 
 export const contactsRoute = () => <Contacts />;
 export const hireRoute = () => <Hire />;
@@ -44,3 +49,8 @@ export const sellCreateComponent = () => <SellCreate />;
 export const sellChangeComponent = () => <SellChange />;
 export const sellComponent = () => <Sell />;
 export const allOrdersComponent = () => <GetAllOrders />;
+export const FeedbackComponent = () => <Feedback />;
+export const HoursesTypesComponent = () => <HoursesTypes />;
+export const ChangeHoursesTypesComponent = () => <ChangeHoursesTypes />;
+export const CreateHoursesTypesComponent = () => <CreateHoursesTypes />;
+export const WelcomeComponent = () => <Welcome />;

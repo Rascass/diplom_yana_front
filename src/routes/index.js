@@ -23,6 +23,11 @@ import {
 	sellChangeComponent,
 	sellComponent,
 	allOrdersComponent,
+	FeedbackComponent,
+	HoursesTypesComponent,
+	ChangeHoursesTypesComponent,
+	CreateHoursesTypesComponent,
+	WelcomeComponent,
 } from "../pages";
 
 export function Routes() {
@@ -50,7 +55,18 @@ export function Routes() {
 				<Route path='/sell/:id' component={sellComponent} />
 				<Route path='/sell' component={sellRoute} />
 				<Route path='/admin/all' component={allOrdersComponent} />
+				<Route path='/admin/feedback' component={FeedbackComponent} />
+				<Route
+					path='/admin/hourses-types/create'
+					component={CreateHoursesTypesComponent}
+				/>
+				<Route
+					path='/admin/hourses-types/:id'
+					component={ChangeHoursesTypesComponent}
+				/>
+				<Route path='/admin/hourses-types' component={HoursesTypesComponent} />
 				<Route path='/admin' component={authRoute} />
+				<Route path='/' component={WelcomeComponent} />
 			</Switch>
 		</Router>
 	);

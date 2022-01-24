@@ -9,6 +9,8 @@ import { validate } from "../../../services/auth";
 import { Button } from "@mui/material";
 import "./style.css";
 import BasicModal from "../../modal";
+import ReactPlayer from "react-player";
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Img = styled("img")({
 	margin: "auto",
@@ -28,7 +30,9 @@ function Sell() {
 	const [data, setData] = useState([]);
 	const [valid, setValid] = useState(false);
 	const [imgId, setId] = useState(0);
+	
 	let { id } = useParams();
+	let history = useHistory();
 
 	useEffect(() => {
 		validate({
@@ -41,6 +45,12 @@ function Sell() {
 		});
 		setId(new RegExp(/\d\/(\w*)\/(\d*)/gm).exec(window.location.href)[2]);
 	}, []);
+
+	const deleteSell = (id) => {
+		Requests.sell.delete(id).then(() => {
+			history.push("/sell");
+		});
+	};
 
 	return (
 		<>
@@ -55,16 +65,40 @@ function Sell() {
 						</Item>
 					</Grid>
 					<Grid item xs={6}>
+						<Item>
+							<div className='video'>
+								<ReactPlayer url={data.video} />
+							</div>
+						</Item>
+					</Grid>
+					<Grid item xs={6}>
 						<Item>{data.title || null}</Item>
 					</Grid>
 					<Grid item xs={6}>
 						<Item className='content'>{data.content || null}</Item>
 					</Grid>
-					<BasicModal name='Оставить заявку' />
+					<Grid item xs={6}>
+						<Item className='content'>Возраст: {data.age || null}</Item>
+						<Item className='content'>Пол: {data.sex || null}</Item>
+						<Item className='content'>Специализация: {data.type || null}</Item>
+						<Item className='content'>Цена: {data.price || null}</Item>
+					</Grid>
+					<BasicModal name={data.age < 3 ? "Забронировать" : "Купить"} />
 					{valid === true ? (
-						<Button variant='contained' href={`${window.location.href}/change`}>
-							Изменить
-						</Button>
+						<>
+							<Button
+								variant='contained'
+								href={`${window.location.href}/change`}>
+								Изменить
+							</Button>
+							<Button
+								variant='contained'
+								onClick={() => {
+									deleteSell(data.id);
+								}}>
+								Удалить
+							</Button>
+						</>
 					) : null}
 				</Grid>
 			</Box>
