@@ -39,7 +39,7 @@ function Price() {
 				</Grid>
 				<Button
 					variant='contained'
-					href='http://localhost:5001/prices'
+					href='http://localhost:5000/api/prices/price.txt'
 					download
 					target='_blank'>
 					Скачать прайс лист
